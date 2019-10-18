@@ -1,0 +1,5 @@
+- cabeçalho com logo do IFPE - campus caruaru
+- nome dos envolvidos no cabeçalho
+- alterar cores
+- imagens (turbina eólica, fotovoltáica, mini bomba, bateria)
+- fazer script para simular carga da bateria

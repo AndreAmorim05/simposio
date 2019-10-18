@@ -1,22 +1,26 @@
 #:import App kivy.app.App
+#:import utils kivy.utils
 
 FloatLayout:
     canvas.before:
         Color:
-            rgba: .0,.0,.0,1
+            rgba: 1,1,1,1
         Rectangle:
             pos: self.pos
             size: self.size
-    Button:
-        text: 'Sair'
-        pos_hint: {'top':1 , 'right':1}
-        size_hint: 0.1,.07
-        on_release: App.get_running_app().stop()
+    
+    Label:
+        text: 'Monitoramento'
+        bold: True
+        color: utils.get_color_from_hex('#12a156')
+        font_size: dp(30)
+        pos_hint: {'center_x': .25, 'center_y': .65}
+    
     GridLayout:
-        padding: dp(2)
-        spacing: dp(2)
-        pos_hint: {'center_x': .5, 'center_y': .5}
-        size_hint: .7,.7
+        padding: dp(10)
+        spacing: dp(10)
+        pos_hint: {'center_x': .25, 'center_y': .4}
+        size_hint: .4,.4
         cols: 2
         BoxLayout:
             orientation: 'vertical'
@@ -24,7 +28,7 @@ FloatLayout:
             spacing: dp(8)
             canvas.before:
                 Color:
-                    rgba: .2,.2,.2,1
+                    rgba: .1,.1,.1,1
                 Rectangle:
                     size: self.size
                     pos: self.pos
@@ -36,7 +40,7 @@ FloatLayout:
             Label:
                 id: lb1
                 text: 'Texto'
-                size_text: 60
+                font_size: 45
                 color: 1,1,1,1
                 bold: True
             Label:
@@ -51,7 +55,7 @@ FloatLayout:
             spacing: dp(8)
             canvas.before:
                 Color:
-                    rgba: .2,.2,.2,1
+                    rgba: .1,.1,.1,1
                 Rectangle:
                     size: self.size
                     pos: self.pos
@@ -63,7 +67,7 @@ FloatLayout:
             Label:
                 id: lb1
                 text: 'Texto'
-                size_text: 60
+                font_size: 45
                 color: 1,1,1,1
                 bold: True
             Label:
@@ -78,7 +82,7 @@ FloatLayout:
             spacing: dp(8)
             canvas.before:
                 Color:
-                    rgba: .2,.2,.2,1
+                    rgba: .1,.1,.1,1
                 Rectangle:
                     size: self.size
                     pos: self.pos
@@ -90,7 +94,7 @@ FloatLayout:
             Label:
                 id: lb1
                 text: 'Texto'
-                size_text: 60
+                font_size: 45
                 color: 1,1,1,1
                 bold: True
             Label:
@@ -105,7 +109,7 @@ FloatLayout:
             spacing: dp(8)
             canvas.before:
                 Color:
-                    rgba: .2,.2,.2,1
+                    rgba: .1,.1,.1,1
                 Rectangle:
                     size: self.size
                     pos: self.pos
@@ -117,7 +121,7 @@ FloatLayout:
             Label:
                 id: lb1
                 text: 'Texto'
-                size_text: 60
+                font_size: 45
                 color: 1,1,1,1
                 bold: True
             Label:
@@ -127,5 +131,62 @@ FloatLayout:
                 height: dp(10)
                 
             
+    Widget:
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#12a156')
+            Line:
+                points: root.width/2, 0, root.width/2, root.height
+                width: dp(5)
+    Widget:
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#12a156')
+            Line:
+                points: 0, root.height*0.95, root.width, root.height*0.95
+                width: root.height*0.1
+    
+
+    Widget:
+        id: logo_cima
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        pos_hint: {'left': 1, 'top': 1}
+        size_hint: 0.4, 0.3
+        Image:
+            source: 'data/logo_grande.png'
+            pos: logo_cima.pos[0], logo_cima.pos[1]+dp(15)
+            size: logo_cima.size
             
-        
+    
+    Image:
+        source: 'data/fotovoltaica.png'
+        # size: self.texture_size[0]*0.3, self.texture_size[1]*0.3
+        #pos_hint: {'center_x': self.texture_size[0]/2+root.width/2, 'center_y': self.texture_size[1]/2}
+        size_hint: .23,.23
+        pos_hint: {'center_x': .63, 'center_y': .1}
+        #allow_stretch: True
+
+    Image:
+        source: 'data/logo_pequeno.png'
+        pos_hint: {'right': 1.035, 'botton': 1}
+        size_hint: .2,.2
+
+    Image:
+        source: 'data/turbina.png'
+        pos_hint: {'right': 1.15, 'botton': 1}
+        size_hint: .6,.6
+
+    Button:
+        text: 'Sair'
+        pos_hint: {'top':1 , 'right':1}
+        size_hint: 0.1,.07
+        on_release: App.get_running_app().stop()
+        background_color: utils.get_color_from_hex('#12a156')
+        # background_normal: ''
+        bold: True
+     #85c441 cor verde claro   utils.get_color_from_hex('#12a156')

@@ -1,6 +1,7 @@
 from kivy.app import App
 
 
+
 class TelaInicial(App):
     pass
 
