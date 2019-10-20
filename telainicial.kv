@@ -42,8 +42,36 @@
                     size_hint_y: None
                     height: dp(10)
                 Label:
+                    id: lb0
+                    text: 'Texto1'
+                    font_size: 45
+                    color: 1,1,1,1
+                    bold: True
+                Label:
+                    id: lb2
+                    text: 'tempo'
+                    id: info
+                    size_hint_y: None
+                    height: dp(10)
+                    
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(15)
+                spacing: dp(8)
+                canvas.before:
+                    Color:
+                        rgba: .1,.1,.1,1
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+                Label:
+                    text: 'teste'
+                    size_hint_y: None
+                    height: dp(10)
+                Label:
                     id: lb1
-                    text: 'Texto'
+                    text: 'Texto2'
                     font_size: 45
                     color: 1,1,1,1
                     bold: True
@@ -69,8 +97,8 @@
                     size_hint_y: None
                     height: dp(10)
                 Label:
-                    id: lb1
-                    text: 'Texto'
+                    id: lb2
+                    text: 'Texto3'
                     font_size: 45
                     color: 1,1,1,1
                     bold: True
@@ -96,35 +124,8 @@
                     size_hint_y: None
                     height: dp(10)
                 Label:
-                    id: lb1
-                    text: 'Texto'
-                    font_size: 45
-                    color: 1,1,1,1
-                    bold: True
-                Label:
-                    text: 'tempo'
-                    id: info
-                    size_hint_y: None
-                    height: dp(10)
-                    
-            BoxLayout:
-                orientation: 'vertical'
-                padding: dp(15)
-                spacing: dp(8)
-                canvas.before:
-                    Color:
-                        rgba: .1,.1,.1,1
-                    Rectangle:
-                        size: self.size
-                        pos: self.pos
-
-                Label:
-                    text: 'teste'
-                    size_hint_y: None
-                    height: dp(10)
-                Label:
-                    id: lb1
-                    text: 'Texto'
+                    id: lb3
+                    text: 'Texto4'
                     font_size: 45
                     color: 1,1,1,1
                     bold: True

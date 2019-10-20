@@ -77,7 +77,12 @@ class Interface(Screen):
                     self.j = 0
                     
                 self.j+= 1
-                print self.values
+                
+                self.ids.lb0.text = str(self.values[0])
+                self.ids.lb1.text = str(self.values[1])
+                self.ids.lb2.text = str(self.values[2])
+                self.ids.lb3.text = str(self.values[3])
+
         except:
             pass
 
