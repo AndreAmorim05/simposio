@@ -25,24 +25,24 @@ class Interface(Screen):
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
 
-        try:
-            GPIO.setmode(GPIO.BOARD)
+        # try:
+        GPIO.setmode(GPIO.BOARD)
 
-            self.adc = Adafruit_ADS1x15.ADS1115()
-            self.sensor_DHT11 = Adafruit_DHT.DHT11
+        self.adc = Adafruit_ADS1x15.ADS1115()
+        self.sensor_DHT11 = Adafruit_DHT.DHT11
 
-            self.values = [0]*4
+        self.values = [0]*4
 
-            self.pino_sensor_DHT11 = 4
-            self.GAIN = 1
+        self.pino_sensor_DHT11 = 4
+        self.GAIN = 1
 
-            self.corrente_eolica = 0
-            self.corrente_fotovoltaica = 0
-            self.j = 0
+        self.corrente_eolica = 0
+        self.corrente_fotovoltaica = 0
+        self.j = 0
 
-            self.umid, self.values[3] = Adafruit_DHT.read_retryself(sensor_DHT11, self.pino_sensor_DHT11)
-        except:
-            print('Não foi possível identificar o Raspberry Pi')
+        self.umid, self.values[3] = Adafruit_DHT.read_retryself(sensor_DHT11, self.pino_sensor_DHT11)
+        # except:
+        #     print('Não foi possível identificar o Raspberry Pi')
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
         if keycode[1] == 'enter':
