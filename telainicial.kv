@@ -205,4 +205,30 @@
             font_size: dp(30)
             color: 0,0,0,1
             bold: True
+        BoxLayout:
+            size_hint: .2,.2
+            pos_hint: {'right': .71, 'top': .83}
+            spacing: dp(10)
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(-25)
+                Image:
+                    source: 'data/bateria1.png'
+                ProgressBar:
+                    id: pgb
+                    max: 100
+                    orientation: 'vertical'
+                    value: 0
+                    background_normal: ''
+                    background_color: .2,.9,.5,1
+            Label:
+                id: percent
+                text: '0%'
+                color: 0,0,0,1
+                font_size: dp(20)
+                bold: True
+                size_hint: .5,.5
+                
+                
+            
         #85c441 cor verde claro   utils.get_color_from_hex('#12a156')

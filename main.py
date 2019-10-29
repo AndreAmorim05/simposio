@@ -5,6 +5,7 @@ from kivy.clock import Clock
 from datetime import datetime
 from datetime import timedelta
 import time
+from math import sin
 
 try:
     import Adafruit_ADS1x15
@@ -24,7 +25,7 @@ class Interface(Screen):
         super(Interface, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
-
+        self.value = 0
         try:
             
             GPIO.setmode(GPIO.BOARD)
@@ -60,7 +61,7 @@ class Interface(Screen):
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
         self._keyboard = None
     
-    def medicoes(self, *args):
+    def medicoes(self, tempo):
         self.now = self.now + timedelta(seconds = 0.5)
         self.ids.tempo.text = self.now.strftime('%H:%M:%S')
 
@@ -82,7 +83,20 @@ class Interface(Screen):
                 self.ids.lb2.text = str(self.values[2])
                 self.ids.lb3.text = str(self.values[3])
 
+            if self.value*100 <= 100:
+                self.value += sin(tempo*0.01)
+                self.ids.pgb.value = abs(100*self.value)
+                self.ids.percent.text = str(100*self.value)+'%'
+            else:
+                self.ids.percent.text = '100.0%'
+            
         except:
+            # if self.value*100 <= 100:
+            #     self.value += sin(tempo*0.01)
+            #     self.ids.pgb.value = abs(100*self.value)
+            #     self.ids.percent.text = str(round(100*self.value,1))+'%'
+            # else:
+            #     self.ids.percent.text = '100.0%'
             print("Erro na leitura")
             
 
