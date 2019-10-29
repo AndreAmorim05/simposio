@@ -11,8 +11,8 @@ try:
     import Adafruit_DHT
     import RPi.GPIO as GPIO
 except:
-    pass
-
+    print("Bibliotecas não foram importadas")
+    
 
 
 
@@ -26,13 +26,12 @@ class Interface(Screen):
         self._keyboard.bind(on_key_down=self._on_keyboard_down)
 
         try:
+            
             GPIO.setmode(GPIO.BOARD)
-
             self.adc = Adafruit_ADS1x15.ADS1115()
             self.sensor_DHT11 = Adafruit_DHT.DHT11
 
             self.values = [0]*4
-
             self.pino_sensor_DHT11 = 4
             self.GAIN = 1
 
@@ -40,9 +39,9 @@ class Interface(Screen):
             self.corrente_fotovoltaica = 0
             self.j = 0
 
-            self.umid, self.values[3] = Adafruit_DHT.read_retry(sensor_DHT11, self.pino_sensor_DHT11)
+            self.umid, self.values[3] = Adafruit_DHT.read_retry(self.sensor_DHT11, self.pino_sensor_DHT11)
         except:
-            print('Não foi possível identificar o Raspberry Pi')
+            print('Nao foi possivel identificar o Raspberry Pi')
 
     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
         if keycode[1] == 'enter':
@@ -67,12 +66,12 @@ class Interface(Screen):
 
         try:
             for i in range(3):
-                self.values[i] = (adc.read_adc(i, gain=self.GAIN) * 4.096) / 32767
+                self.values[i] = (self.adc.read_adc(i, gain=self.GAIN) * 4.096) / 32767
                 self.values[i] = round(self.values[i], 4)
                 
                 self.corrente_eolica = self.values[2] / 1000
                 self.corrente_fotovoltaica = self.values[2] / 1000
-                if j == 10 : 
+                if self.j == 10 : 
                     self.umid, self.values[3] = Adafruit_DHT.read_retry(self.sensor_DHT11, self.pino_sensor_DHT11)
                     self.j = 0
                     
@@ -84,7 +83,8 @@ class Interface(Screen):
                 self.ids.lb3.text = str(self.values[3])
 
         except:
-            pass
+            print("Erro na leitura")
+            
 
 class TelaInicial(App):
     def build(self):
