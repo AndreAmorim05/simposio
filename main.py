@@ -84,19 +84,19 @@ class Interface(Screen):
                 self.ids.lb3.text = str(self.values[3])
 
             if self.value*100 <= 100:
-                self.value += sin(tempo*0.01)
-                self.ids.pgb.value = abs(100*self.value)
-                self.ids.percent.text = str(100*self.value)+'%'
-            else:
-                self.ids.percent.text = '100.0%'
-            
-        except:
-            if self.value*100 <= 100:
                 self.value += sin(tempo*0.0015)
                 self.ids.pgb.value = abs(100*self.value)
                 self.ids.percent.text = str(round(100*self.value,1))+'%'
             else:
                 self.ids.percent.text = '100.0%'
+            
+        except:
+            # if self.value*100 <= 100:
+            #     self.value += sin(tempo*0.0015)
+            #     self.ids.pgb.value = abs(100*self.value)
+            #     self.ids.percent.text = str(round(100*self.value,1))+'%'
+            # else:
+            #     self.ids.percent.text = '100.0%'
             # print("Erro na leitura")
             pass
             
