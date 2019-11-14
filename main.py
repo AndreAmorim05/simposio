@@ -78,10 +78,10 @@ class Interface(Screen):
                     
                 self.j+= 1
                 
-                self.ids.lb0.text = str(self.values[0])
-                self.ids.lb1.text = str(self.values[1])
-                self.ids.lb2.text = str(self.values[2])
-                self.ids.lb3.text = str(self.values[3])
+                self.ids.lb0.text = str(round(self.values[0],2))
+                self.ids.lb1.text = str(round(self.values[1],2))
+                self.ids.lb2.text = str(round(self.values[2],2))
+                self.ids.lb3.text = str(round(self.values[3],2))
 
             if self.value*100 <= 100:
                 self.value += sin(tempo*0.0015)
