@@ -70,18 +70,19 @@ class Interface(Screen):
                 self.values[i] = (self.adc.read_adc(i, gain=self.GAIN) * 4.096) / 32767
                 self.values[i] = round(self.values[i], 4)
                 
-                self.corrente_eolica = self.values[2] / 1000
-                self.corrente_fotovoltaica = self.values[2] / 1000
-                if self.j == 10 : 
-                    self.umid, self.values[3] = Adafruit_DHT.read_retry(self.sensor_DHT11, self.pino_sensor_DHT11)
-                    self.j = 0
+            self.corrente_eolica = self.values[1] / 1000
+            self.corrente_fotovoltaica = self.values[2] / 1000
+            
+            if self.j == 10 : 
+                self.umid, self.values[3] = Adafruit_DHT.read_retry(self.sensor_DHT11, self.pino_sensor_DHT11)
+                self.j = 0
                     
-                self.j+= 1
+            self.j+= 1
                 
-                self.ids.lb0.text = str(round(self.values[0],2))
-                self.ids.lb1.text = str(round(self.values[1],2))
-                self.ids.lb2.text = str(round(self.values[2],2))
-                self.ids.lb3.text = str(round(self.values[3],2))
+            self.ids.lb0.text = str(round(self.values[0],2))
+            self.ids.lb1.text = str(round(self.corrente_eolica,2))
+            self.ids.lb2.text = str(round(self.corrente_fotovoltaica,2))
+            self.ids.lb3.text = str(round(self.values[3],2))
 
             if self.value*100 <= 100:
                 self.value += sin(tempo*0.0015)
