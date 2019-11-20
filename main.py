@@ -90,17 +90,34 @@ class Interface(Screen):
                 self.ids.percent.text = str(round(100*self.value,1))+'%'
             else:
                 self.ids.percent.text = '100.0%'
+                
             
         except:
-            # if self.value*100 <= 100:
-            #     self.value += sin(tempo*0.0015)
-            #     self.ids.pgb.value = abs(100*self.value)
-            #     self.ids.percent.text = str(round(100*self.value,1))+'%'
-            # else:
-            #     self.ids.percent.text = '100.0%'
-            # print("Erro na leitura")
+            if self.value*100 <= 100:
+                self.value += sin(tempo*0.0015)
+                self.ids.pgb.value = abs(100*self.value)
+                self.ids.percent.text = str(round(100*self.value,1))+'%'
+            else:
+                self.ids.percent.text = '100.0%'
+            print("Erro na leitura")
             pass
-            
+
+        
+    def motor(self, *args):
+        if self.ids.switch.active != True:
+            print('Ligou')
+            self.event2 = Clock.schedule_interval(self.descarga, 0.5)
+        else:
+            print('Desligou')
+            try:
+                self.event2.cancel()
+            except:
+                pass
+
+    def descarga(self, t):
+        if self.value*100 > 0:
+            self.value -= sin(t*0.005)
+
 
 class TelaInicial(App):
     def build(self):

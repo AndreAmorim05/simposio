@@ -228,7 +228,34 @@
                 font_size: dp(20)
                 bold: True
                 size_hint: .5,.5
-                
+        
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_x': .88, 'center_y': .66}
+            size_hint: .2,.2
+            spacing: dp(-5)
+            padding: dp(-2)
+            canvas.before:
+                Color:
+                    rgba: utils.get_color_from_hex('#12a156')
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                Color:
+                    rgba: 1,1,1,1
+                RoundedRectangle:
+                    pos: self.pos[0] + dp(2.5), self.pos[1] + dp(2.5)
+                    size: self.size[0] - dp(5), self.size[1] - dp(5)
+            Label:
+                text: 'Motor'
+                color: utils.get_color_from_hex('#12a156')
+                font_size: dp(20)
+                bold: True
+                size_hint: 1,.05
+            Switch:             
+                id: switch   
+                size_hint: 1,.1
+                on_touch_down: root.motor()
                 
             
         #85c441 cor verde claro   utils.get_color_from_hex('#12a156')
