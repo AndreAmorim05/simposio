@@ -29,6 +29,10 @@ class Interface(Screen):
         try:
             
             GPIO.setmode(GPIO.BOARD)
+            try:
+                GPIO.setup(25, GPIO.OUT)
+            except:
+                print ("Porta GPIO 25 nao configurada")
             self.adc = Adafruit_ADS1x15.ADS1115()
             self.sensor_DHT11 = Adafruit_DHT.DHT11
 
@@ -102,22 +106,33 @@ class Interface(Screen):
             print("Erro na leitura")
             pass
 
-        
-    def motor(self, *args):
-        if self.ids.switch.active != True:
-            print('Ligou')
+
+    def motor(self, active):
+        if active == False:
+            print('Ligou', active)
             self.event2 = Clock.schedule_interval(self.descarga, 0.5)
+            try:
+                GPIO.output(25,GPIO.HIGH)
+            except:
+                pass
         else:
             print('Desligou')
+
             try:
                 self.event2.cancel()
+                GPIO.output(25,GPIO.LOW)
             except:
                 pass
 
     def descarga(self, t):
         if self.value*100 > 0:
             self.value -= sin(t*0.005)
-
+        else:
+            self.value = 0.000
+            try:
+                GPIO.output(25,GPIO.LOW)
+            except:
+                pass
 
 class TelaInicial(App):
     def build(self):
